@@ -9,11 +9,11 @@ import project.ramezreda.flickrsearch.network.APIInterface
 class SearchRepository {
     private val apiInterface: APIInterface = APIClient.getClient().create(APIInterface::class.java)
 
-    fun searchPhotos(searchText: String): Single<JsonFlickrAPI> {
+    fun searchPhotos(searchText: String, resultsCount: Int): Single<JsonFlickrAPI> {
         return apiInterface.searchPhotos(
             "flickr.photos.search",
             BuildConfig.FLICKR_APIKEY,
-            searchText, 25, "json", 1
+            searchText, resultsCount, "json", 1
         )
     }
 }

@@ -42,7 +42,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
         android:gravity="center"
-        android:text="@string/use_the_search_bar_to_search_photos"
+        android:text="@string/no_data_message"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

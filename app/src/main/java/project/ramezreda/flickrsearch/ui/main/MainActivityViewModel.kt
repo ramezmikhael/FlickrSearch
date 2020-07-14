@@ -10,10 +10,12 @@ import project.ramezreda.flickrsearch.repository.SearchRepository
 
 class MainActivityViewModel : ViewModel() {
     var photos: MutableLiveData<JsonFlickrAPI?>? = MutableLiveData()
+    var resultsCount: MutableLiveData<Int> = MutableLiveData(25)
+
 
     fun searchPhotos(searchText: String) {
         val call = SearchRepository()
-            .searchPhotos(searchText)
+            .searchPhotos(searchText, resultsCount.value!!)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
