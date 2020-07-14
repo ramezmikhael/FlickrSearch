@@ -43,19 +43,11 @@ class MainActivity : AppCompatActivity(), IPhotoSelect {
         setSupportActionBar(toolbar)
 
         viewModel.photos?.observe(this, Observer {
-            Log.d("CHANGE", "count: ${viewModel.photos?.value?.photos?.photo?.size}")
             refreshRecyclerView()
         })
 
         initUI()
         initRecyclerView()
-
-    }
-
-    private fun initRecyclerView() {
-        recyclerViewPhotos.adapter = adapter
-        recyclerViewPhotos.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
     private fun initUI() {
@@ -66,9 +58,15 @@ class MainActivity : AppCompatActivity(), IPhotoSelect {
 
         buttonGo.setOnClickListener { search() }
 
-        historyAdapter.also {
-            editTextSearch.setAdapter(it)
+        historyAdapter.apply {
+            editTextSearch.setAdapter(this)
         }
+    }
+
+    private fun initRecyclerView() {
+        recyclerViewPhotos.adapter = adapter
+        recyclerViewPhotos.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
     private fun refreshRecyclerView() {
@@ -84,8 +82,6 @@ class MainActivity : AppCompatActivity(), IPhotoSelect {
 
     private fun search() {
         viewModel.searchPhotos(editTextSearch.text.toString())
-
-        // Save search term to the recent list
         historyAdapter.add(editTextSearch.text.toString())
     }
 
