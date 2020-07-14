@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import project.ramezreda.flickrsearch.model.JsonFlickrAPIModel
+import project.ramezreda.flickrsearch.model.JsonFlickrAPI
 import project.ramezreda.flickrsearch.repository.SearchRepository
 
 class MainActivityViewModel : ViewModel() {
-    var photos: MutableLiveData<JsonFlickrAPIModel?> = MutableLiveData()
+    var photos: MutableLiveData<JsonFlickrAPI?> = MutableLiveData()
 
     fun searchPhotos(searchText: String) {
         val call = SearchRepository()

@@ -4,4 +4,7 @@
     <string name="go">Go</string>
     <string name="image_search_item">Image search item</string>
     <string name="use_the_search_bar_to_search_photos">Use the search bar to search photos!</string>
+    <string name="title_activity_photo">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

@@ -1,8 +1,11 @@
 package project.ramezreda.flickrsearch.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-data class PhotoModel(
+@Parcelize
+data class Photo(
     val id: String,
     val owner: String,
     val secret: String,
@@ -15,4 +18,4 @@ data class PhotoModel(
     val isFriend: String,
     @SerializedName("isfamily")
     val isFamily: String
-)
+) : Parcelable

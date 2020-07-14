@@ -1,6 +1,5 @@
 package project.ramezreda.flickrsearch.ui.main
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import project.ramezreda.flickrsearch.R
-import project.ramezreda.flickrsearch.model.PhotoModel
-import project.ramezreda.flickrsearch.model.PhotosModel
-import project.ramezreda.flickrsearch.ui.main.SearchDataAdapter.*
+import project.ramezreda.flickrsearch.model.Photo
+import project.ramezreda.flickrsearch.model.Photos
+import project.ramezreda.flickrsearch.ui.main.SearchDataAdapter.SearchViewHolder
 import project.ramezreda.flickrsearch.utils.UrlBuilder
 
-class SearchDataAdapter(var photos: PhotosModel?) : RecyclerView.Adapter<SearchViewHolder>() {
+class SearchDataAdapter(var photos: Photos?, val photoSelect: IPhotoSelect) : RecyclerView.Adapter<SearchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.search_list_item, parent, false)
@@ -36,7 +35,7 @@ class SearchDataAdapter(var photos: PhotosModel?) : RecyclerView.Adapter<SearchV
         private val image : ImageView = view.findViewById(R.id.imageThumb)
         private val title: TextView = view.findViewById(R.id.textViewTitle)
 
-        fun bind(photo: PhotoModel) {
+        fun bind(photo: Photo) {
             title.text = photo.title
             Glide.with(image.context).load(photo.let {
                 UrlBuilder.buildThumbnailUrl(
@@ -45,8 +44,9 @@ class SearchDataAdapter(var photos: PhotosModel?) : RecyclerView.Adapter<SearchV
             }).into(image)
 
             view.setOnClickListener {
-                Log.d("click", "Clicked id: ${photo.id}")
+                photoSelect.let {  photoSelect.onPhotoSelected(photo) }
             }
         }
     }
 }
+

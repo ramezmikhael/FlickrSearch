@@ -1,6 +1,6 @@
 package project.ramezreda.flickrsearch.ui.main
 
-import android.opengl.Visibility
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,8 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import project.ramezreda.flickrsearch.R
+import project.ramezreda.flickrsearch.model.Photo
+import project.ramezreda.flickrsearch.ui.details.PhotoActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IPhotoSelect {
 
     private lateinit var recyclerViewPhotos: RecyclerView
     private lateinit var buttonGo: Button
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val adapter: SearchDataAdapter by lazy {
-        SearchDataAdapter(viewModel.photos.value?.photos)
+        SearchDataAdapter(viewModel.photos.value?.photos, this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,5 +71,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun search() {
         viewModel.searchPhotos(editTextSearch.text.toString())
+    }
+
+    override fun onPhotoSelected(photo: Photo) {
+        val intent = Intent(this, PhotoActivity::class.java)
+        intent.putExtra(PhotoActivity.EXTRA_PHOTO_KEY, photo)
+        startActivity(intent)
     }
 }

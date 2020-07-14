@@ -1,6 +1,6 @@
 package project.ramezreda.flickrsearch.model
 
-data class JsonFlickrAPIModel(
+data class JsonFlickrAPI(
     val stat: String,
-    val photos: PhotosModel
+    val photos: Photos
 )
