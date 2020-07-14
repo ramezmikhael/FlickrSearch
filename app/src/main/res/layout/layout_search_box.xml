@@ -6,7 +6,7 @@
     android:orientation="horizontal"
     android:background="@drawable/search_box_border">
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/editTextSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
     <Button
         android:id="@+id/buttonGo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:text="@string/go"
         android:background="?attr/selectableItemBackground"/>
 </LinearLayout>

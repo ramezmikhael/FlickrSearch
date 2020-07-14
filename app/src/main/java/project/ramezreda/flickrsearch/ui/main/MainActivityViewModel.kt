@@ -9,7 +9,7 @@ import project.ramezreda.flickrsearch.model.JsonFlickrAPI
 import project.ramezreda.flickrsearch.repository.SearchRepository
 
 class MainActivityViewModel : ViewModel() {
-    var photos: MutableLiveData<JsonFlickrAPI?> = MutableLiveData()
+    var photos: MutableLiveData<JsonFlickrAPI?>? = MutableLiveData()
 
     fun searchPhotos(searchText: String) {
         val call = SearchRepository()
@@ -17,7 +17,7 @@ class MainActivityViewModel : ViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                photos.value = it
+                photos?.value = it
                 Log.d("Success", it.stat)
             }, {
                 Log.d("Error", it.message)
