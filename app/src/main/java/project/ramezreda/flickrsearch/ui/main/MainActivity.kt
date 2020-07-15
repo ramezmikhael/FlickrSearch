@@ -27,10 +27,6 @@ class MainActivity : AppCompatActivity(), IPhotoSelect {
     private lateinit var editTextSearch: AutoCompleteTextView
     private lateinit var textViewMessage: TextView
 
-    private val historyAdapter: ArrayAdapter<String> by lazy {
-        ArrayAdapter<String>(this, android.R.layout.simple_list_item_1)
-    }
-
     private val viewModel: MainActivityViewModel by lazy {
         ViewModelProvider(this).get(MainActivityViewModel::class.java)
     }
@@ -62,7 +58,7 @@ class MainActivity : AppCompatActivity(), IPhotoSelect {
 
         buttonGo.setOnClickListener { search() }
 
-        historyAdapter.apply {
+        viewModel.historyAdapter.value.apply {
             editTextSearch.setAdapter(this)
         }
     }
@@ -86,7 +82,7 @@ class MainActivity : AppCompatActivity(), IPhotoSelect {
 
     private fun search() {
         viewModel.searchPhotos(editTextSearch.text.toString())
-        historyAdapter.add(editTextSearch.text.toString())
+        viewModel.historyAdapter.value?.add(editTextSearch.text.toString())
     }
 
     override fun onPhotoSelected(photo: Photo) {

@@ -17,7 +17,7 @@
             android:id="@+id/imageThumb"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:contentDescription="@string/image_search_item"
+            android:contentDescription="@string/image_search_result"
             android:scaleType="center" />
 
         <TextView

@@ -2,7 +2,7 @@
     <string name="app_name">Flickr Search</string>
     <string name="search">Search</string>
     <string name="go">Go</string>
-    <string name="image_search_item">Image search item</string>
+    <string name="image_search_result">Image search result</string>
     <string name="no_data_message">No data available yet!</string>
     <string name="title_activity_photo">FullscreenActivity</string>
     <string name="result_count">Result count</string>

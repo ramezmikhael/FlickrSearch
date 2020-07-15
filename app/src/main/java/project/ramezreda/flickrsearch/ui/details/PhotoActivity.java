@@ -1,11 +1,15 @@
 package project.ramezreda.flickrsearch.ui.details;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+
+import java.util.Objects;
 
 import project.ramezreda.flickrsearch.R;
 import project.ramezreda.flickrsearch.model.Photo;
@@ -16,23 +20,24 @@ public class PhotoActivity extends AppCompatActivity {
 
     private ImageView mImageViewFullPhoto;
 
-    private boolean mVisible;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_photo);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
-        mVisible = true;
         mImageViewFullPhoto = findViewById(R.id.imageViewFullPhoto);
 
         loadPhoto();
     }
 
     private void loadPhoto() {
-        Photo photo = getIntent().getExtras().getParcelable(EXTRA_PHOTO_KEY);
+        Intent intent = getIntent();
+        Photo photo = Objects.requireNonNull(intent.getExtras()).getParcelable(EXTRA_PHOTO_KEY);
+        assert photo != null;
         Glide.with(this).load(UrlBuilder.INSTANCE.buildBigSizePhotoUrl(photo)).into(mImageViewFullPhoto);
         setTitle(photo.getTitle());
     }
